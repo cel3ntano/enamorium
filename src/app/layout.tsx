@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
-import "./globals.css";
-
+import type { Metadata } from 'next';
+import './globals.css';
+import Providers from '@/components/Providers';
 
 export const metadata: Metadata = {
-  title: "Enamorium",
-  description: "Discover, favorite, and connect with people who share your passion for authentic relationships",
+  title: 'Enamorium',
+  description:
+    'Discover, favorite, and connect with people who share your passion for authentic relationships',
 };
 
 export default function RootLayout({
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
