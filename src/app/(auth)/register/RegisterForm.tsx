@@ -6,19 +6,19 @@ import { Button } from '@heroui/button';
 import React from 'react';
 import { GiPadlock } from 'react-icons/gi';
 import { useForm } from 'react-hook-form';
-import { loginSchema, LoginSchema } from '@/lib/schemas/loginSchema';
+import { registerSchema, RegisterSchema } from '@/lib/schemas/registerSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-export default function LoginForm() {
+export default function RegisterForm() {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<LoginSchema>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<RegisterSchema>({
+    resolver: zodResolver(registerSchema),
     mode: 'onTouched',
   });
-  const onSubmit = (data: LoginSchema) => console.log(data);
+  const onSubmit = (data: RegisterSchema) => console.log(data);
 
   return (
     <Card className="w-2/5 mx-auto">
@@ -26,14 +26,22 @@ export default function LoginForm() {
         <div className="flex flex-col items-center gap-2">
           <div className="flex flex-row items-center gap-3 text-secondary">
             <GiPadlock size={30} />
-            <h1 className="text-3xl font-semibold">Login</h1>
+            <h1 className="text-3xl font-semibold">Register</h1>
           </div>
-          <p className="text-neutral-500">Welcome back to Enamorium</p>
+          <p className="text-neutral-500">Welcome to Enamorium</p>
         </div>
       </CardHeader>
       <CardBody>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
+            <Input
+              defaultValue=""
+              label="Name"
+              variant="bordered"
+              {...register('name')}
+              isInvalid={!!errors.name}
+              errorMessage={errors.name?.message}
+            />
             <Input
               defaultValue=""
               label="Email"
@@ -57,7 +65,7 @@ export default function LoginForm() {
               color="secondary"
               type="submit"
             >
-              Login
+              Register
             </Button>
           </div>
         </form>
