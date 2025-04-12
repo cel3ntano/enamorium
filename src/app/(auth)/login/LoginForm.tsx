@@ -26,38 +26,39 @@ export default function LoginForm() {
     const result = await signInUser(data);
     if (result.status === 'success') {
       router.push('/members');
+      router.refresh();
     } else {
       toast.error(result.error);
     }
   };
 
   return (
-    <Card className="w-2/5 mx-auto">
-      <CardHeader className="flex flex-col items-center justify-center">
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex flex-row items-center gap-3 text-secondary">
+    <Card className='w-2/5 mx-auto'>
+      <CardHeader className='flex flex-col items-center justify-center'>
+        <div className='flex flex-col items-center gap-2'>
+          <div className='flex flex-row items-center gap-3 text-secondary'>
             <GiPadlock size={30} />
-            <h1 className="text-3xl font-semibold">Login</h1>
+            <h1 className='text-3xl font-semibold'>Login</h1>
           </div>
-          <p className="text-neutral-500">Welcome back to Enamorium</p>
+          <p className='text-neutral-500'>Welcome back to Enamorium</p>
         </div>
       </CardHeader>
       <CardBody>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="space-y-4">
+          <div className='space-y-4'>
             <Input
-              defaultValue=""
-              label="Email"
-              variant="bordered"
+              defaultValue=''
+              label='Email'
+              variant='bordered'
               {...register('email')}
               isInvalid={!!errors.email}
               errorMessage={errors.email?.message}
             />
             <Input
-              defaultValue=""
-              label="Password"
-              variant="bordered"
-              type="pasword"
+              defaultValue=''
+              label='Password'
+              variant='bordered'
+              type='pasword'
               {...register('password')}
               isInvalid={!!errors.password}
               errorMessage={errors.password?.message}
@@ -66,8 +67,8 @@ export default function LoginForm() {
               isLoading={isSubmitting}
               isDisabled={!isValid}
               fullWidth
-              color="secondary"
-              type="submit"
+              color='secondary'
+              type='submit'
             >
               Login
             </Button>

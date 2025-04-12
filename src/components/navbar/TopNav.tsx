@@ -1,15 +1,18 @@
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/navbar';
-import { Button } from '@heroui/button';
-import Link from 'next/link';
-import React from 'react';
 import { RiHeartsFill } from 'react-icons/ri';
+import { Navbar, NavbarBrand, NavbarContent } from '@heroui/navbar';
+import Link from 'next/link';
+import { Button } from '@heroui/button';
 import NavLink from './NavLink';
+import { auth } from '@/auth';
+import UserMenu from './UserMenu';
 
-export default function TopNav() {
+export default async function TopNav() {
+  const session = await auth();
+
   return (
     <Navbar
-      maxWidth="xl"
-      className="bg-gradient-to-r from-purple-400 to-purple-700"
+      maxWidth={'xl'}
+      className='bg-gradient-to-r from-purple-400 to-purple-700'
       classNames={{
         item: [
           'text-xl',
@@ -19,36 +22,41 @@ export default function TopNav() {
         ],
       }}
     >
-      <NavbarBrand as={Link} href="/">
-        <RiHeartsFill size={40} className="text-gray-200" />
-        <div className="font-bold text-3xl flex">
-          <span className="text-gray-200">En</span>
-          <span className="text-pink-100">amor</span>
-          <span className="text-gray-200">ium</span>
+      <NavbarBrand as={Link} href='/'>
+        <RiHeartsFill size={40} className='text-gray-200' />
+        <div className='font-bold text-3xl flex'>
+          <span className='text-gray-900'>Next</span>
+          <span className='text-gray-200'>Match</span>
         </div>
       </NavbarBrand>
-      <NavbarContent justify="center">
-        <NavLink href="/members" label="Members" />
-        <NavLink href="/lists" label="Lists" />
-        <NavLink href="/messages" label="Messages" />
+      <NavbarContent justify='center'>
+        <NavLink href='/members' label='Matches' />
+        <NavLink href='/lists' label='Lists' />
+        <NavLink href='/messages' label='messages' />
       </NavbarContent>
-      <NavbarContent justify="end">
-        <Button
-          as={Link}
-          href="/login"
-          variant="bordered"
-          className="text-white"
-        >
-          Login
-        </Button>
-        <Button
-          as={Link}
-          href="/register"
-          variant="bordered"
-          className="text-white"
-        >
-          Register
-        </Button>
+      <NavbarContent justify='end'>
+        {session?.user ? (
+          <UserMenu user={session.user} />
+        ) : (
+          <>
+            <Button
+              as={Link}
+              href={'/login'}
+              variant={'bordered'}
+              className={'text-white'}
+            >
+              Login
+            </Button>
+            <Button
+              as={Link}
+              href={'/register'}
+              variant={'bordered'}
+              className={'text-white'}
+            >
+              Register
+            </Button>
+          </>
+        )}
       </NavbarContent>
     </Navbar>
   );
