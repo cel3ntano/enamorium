@@ -17,7 +17,7 @@ export default function RegisterForm() {
     setError,
     formState: { errors, isValid, isSubmitting },
   } = useForm<RegisterSchema>({
-    // resolver: zodResolver(registerSchema),
+    resolver: zodResolver(registerSchema),
     mode: 'onTouched',
   });
 
@@ -38,46 +38,46 @@ export default function RegisterForm() {
   };
 
   return (
-    <Card className="w-2/5 mx-auto">
-      <CardHeader className="flex flex-col items-center justify-center">
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex flex-row items-center gap-3 text-secondary">
+    <Card className='w-2/5 mx-auto'>
+      <CardHeader className='flex flex-col items-center justify-center'>
+        <div className='flex flex-col items-center gap-2'>
+          <div className='flex flex-row items-center gap-3 text-secondary'>
             <GiPadlock size={30} />
-            <h1 className="text-3xl font-semibold">Register</h1>
+            <h1 className='text-3xl font-semibold'>Register</h1>
           </div>
-          <p className="text-neutral-500">Welcome to Enamorium</p>
+          <p className='text-neutral-500'>Welcome to Enamorium</p>
         </div>
       </CardHeader>
       <CardBody>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="space-y-4">
+          <div className='space-y-4'>
             <Input
-              defaultValue=""
-              label="Name"
-              variant="bordered"
+              defaultValue=''
+              label='Name'
+              variant='bordered'
               {...register('name')}
               isInvalid={!!errors.name}
               errorMessage={errors.name?.message}
             />
             <Input
-              defaultValue=""
-              label="Email"
-              variant="bordered"
+              defaultValue=''
+              label='Email'
+              variant='bordered'
               {...register('email')}
               isInvalid={!!errors.email}
               errorMessage={errors.email?.message}
             />
             <Input
-              defaultValue=""
-              label="Password"
-              variant="bordered"
-              type="pasword"
+              defaultValue=''
+              label='Password'
+              variant='bordered'
+              type='pasword'
               {...register('password')}
               isInvalid={!!errors.password}
               errorMessage={errors.password?.message}
             />
             {errors.root?.serverError && (
-              <p className="text-danger text-sm">
+              <p className='text-danger text-sm'>
                 {errors.root?.serverError.message}
               </p>
             )}
@@ -85,8 +85,8 @@ export default function RegisterForm() {
               isLoading={isSubmitting}
               isDisabled={!isValid}
               fullWidth
-              color="secondary"
-              type="submit"
+              color='secondary'
+              type='submit'
             >
               Register
             </Button>
