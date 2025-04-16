@@ -25,8 +25,9 @@ export default async function TopNav() {
       <NavbarBrand as={Link} href='/'>
         <RiHeartsFill size={40} className='text-gray-200' />
         <div className='font-bold text-3xl flex'>
-          <span className='text-gray-900'>Next</span>
-          <span className='text-gray-200'>Match</span>
+          <span className='text-gray-200'>En</span>
+          <span className='text-pink-100'>amor</span>
+          <span className='text-gray-200'>ium</span>
         </div>
       </NavbarBrand>
       <NavbarContent justify='center'>

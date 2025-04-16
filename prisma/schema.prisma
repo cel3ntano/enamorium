@@ -27,6 +27,7 @@ model User {
   created DateTime @default(now())
   updated DateTime @default(now())
   description String
+  city String
   country String
   image String?
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
