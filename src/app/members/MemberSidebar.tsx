@@ -1,3 +1,5 @@
+'use client';
+
 import { calculateAge } from '@/lib/util';
 import { Card, CardBody, CardFooter } from '@heroui/card';
 import { Image } from '@heroui/image';
