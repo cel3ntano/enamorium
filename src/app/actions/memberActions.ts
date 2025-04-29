@@ -17,6 +17,7 @@ export async function getMembers() {
     });
   } catch (error) {
     console.error(error);
+    throw error;
   }
 }
 
@@ -25,6 +26,7 @@ export async function getMemberByUserId(userId: string) {
     return prisma.member.findUnique({ where: { userId } });
   } catch (error) {
     console.error(error);
+    throw error;
   }
 }
 
